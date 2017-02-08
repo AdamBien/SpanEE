@@ -15,7 +15,7 @@ public class TracEEIT {
 
     @Before
     public void initClient() {
-        this.cut = new TracEE("http://localhost:9411/api/v1/spans", true);
+        this.cut = new TracEE(() -> "http://localhost:9411/api/v1/spans", true);
     }
 
     @Test

@@ -28,7 +28,7 @@ public class TracEEClientRequestFilter implements ClientRequestFilter, ClientRes
 
 
     public TracEEClientRequestFilter(String host) {
-        this.tracEE = new TracEE(host, true);
+        this.tracEE = new TracEE(() -> host, true);
     }
 
 

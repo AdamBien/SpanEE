@@ -21,39 +21,14 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class TracEEContainerRequestFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
-    private final static String ZIPKIN_URI = "zipkin.uri";
     private final static ConcurrentHashMap<ContainerRequestContext, Long> concurrentRequests = new ConcurrentHashMap<>();
-
-    private final static String API_PATH = "/api/v1/spans";
-
-    private String zipkinHost = "http://localhost:9411";
-
-
     private TracEE tracee;
 
     public TracEEContainerRequestFilter() {
-        System.out.println("Instantiated: " + this);
-        this.configure();
-    }
-
-    public void configure() {
-        this.zipkinHost = getZipkinURIFromSystemProperty().
-                orElse(getZipkinURIFromEnvironment().
-                        orElse(this.zipkinHost)
-                );
-        this.zipkinHost += API_PATH;
-        System.out.println("Using zipkin uri" + this.zipkinHost);
-        this.tracee = new TracEE(this.zipkinHost, false);
+        this.tracee = new TracEE(Networking::configureBaseURI, true);
     }
 
 
-    Optional<String> getZipkinURIFromSystemProperty() {
-        return Optional.ofNullable(System.getProperty(ZIPKIN_URI));
-    }
-
-    Optional<String> getZipkinURIFromEnvironment() {
-        return Optional.ofNullable(System.getenv().get(ZIPKIN_URI));
-    }
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {

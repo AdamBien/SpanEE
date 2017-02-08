@@ -3,6 +3,7 @@ package com.airhacks.tracee.boundary;
 
 import java.util.Optional;
 import static java.util.UUID.randomUUID;
+import java.util.function.Supplier;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -19,20 +20,24 @@ import javax.ws.rs.core.Response;
  */
 public class TracEE {
     final static String TRACEE_HEADER = "span.id";
+    final static String API_PATH = "/api/v1/spans";
 
     private Client client;
     private WebTarget tut;
     private final boolean clientMode;
 
+
     private Logging LOG;
 
-    public TracEE(String uri, boolean clientMode) {
+    public TracEE(Supplier<String> uriSupplier, boolean clientMode) {
+        String uri = uriSupplier.get();
         this.LOG = System.out::println;
         this.LOG.log("URI: " + uri + " Client mode: " + clientMode);
         this.client = ClientBuilder.newClient();
-        this.tut = this.client.target(uri);
+        this.tut = this.client.target(uri).path(API_PATH);
         this.clientMode = clientMode;
     }
+
 
     public String saveParentSpan(String spanName, String serviceName, String ipv4, long durationInNanos) {
         this.LOG.log("Saving parent span");
