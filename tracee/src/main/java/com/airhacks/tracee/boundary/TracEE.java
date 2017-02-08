@@ -24,14 +24,18 @@ public class TracEE {
     private WebTarget tut;
     private final boolean clientMode;
 
+    private Logging LOG;
+
     public TracEE(String uri, boolean clientMode) {
+        this.LOG = System.out::println;
+        this.LOG.log("URI: " + uri + " Client mode: " + clientMode);
         this.client = ClientBuilder.newClient();
         this.tut = this.client.target(uri);
         this.clientMode = clientMode;
     }
 
     public String saveParentSpan(String spanName, String serviceName, String ipv4, long durationInNanos) {
-        System.out.println("Saving parent span");
+        this.LOG.log("Saving parent span");
         long timestamp = System.currentTimeMillis() * 1000;
         String id = this.createId();
         this.saveSpan(null, id, id, spanName, serviceName, ipv4, timestamp, durationInNanos);
@@ -39,7 +43,7 @@ public class TracEE {
     }
 
     public String saveChildSpan(String parentId, String spanName, String serviceName, String ipv4, long durationInNanos) {
-        System.out.println("Saving child span");
+        this.LOG.log("Saving child span");
         long timestamp = System.currentTimeMillis() * 1000;
         String id = this.createId();
         this.saveSpan(parentId, id, parentId, spanName, serviceName, ipv4, timestamp, durationInNanos);
@@ -50,8 +54,12 @@ public class TracEE {
     void saveSpan(String parentSpanId, String spanId, String traceId, String spanName, String serviceName, String ipv4, long timestamp, long duration) {
         JsonArray span = createSpans(parentSpanId, spanId, traceId, spanName, serviceName, ipv4, timestamp, duration);
         Response response = this.tut.request().post(Entity.json(span));
-        if (response.getStatus() == 202) {
-            System.out.println("Successfully send");
+        final int status = response.getStatus();
+        if (status == 202) {
+            this.LOG.log("Successfully sent");
+            this.LOG.log("span: " + span);
+        } else {
+            this.LOG.log("Problem sending span. Status: " + status);
         }
     }
 
