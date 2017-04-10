@@ -23,7 +23,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>tracee</artifactId>
+            <artifactId>spanee</artifactId>
             <version>${project.version}</version>
         </dependency>        
         <dependency>
