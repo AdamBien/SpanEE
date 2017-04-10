@@ -1,9 +1,9 @@
 
-package com.airhacks.tracee.boundary;
+package com.airhacks.spanee.boundary;
 
-import static com.airhacks.tracee.boundary.Networking.extractIpAddress;
-import static com.airhacks.tracee.boundary.Networking.extractServiceName;
-import static com.airhacks.tracee.boundary.TracEE.TRACEE_HEADER;
+import static com.airhacks.spanee.boundary.Networking.extractIpAddress;
+import static com.airhacks.spanee.boundary.Networking.extractServiceName;
+import static com.airhacks.spanee.boundary.TracEE.TRACEE_HEADER;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;

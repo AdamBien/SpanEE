@@ -1,7 +1,7 @@
 
-package com.airhacks.tracee.boundary;
+package com.airhacks.spanee.boundary;
 
-import static com.airhacks.tracee.boundary.TracEE.TRACEE_HEADER;
+import static com.airhacks.spanee.boundary.TracEE.TRACEE_HEADER;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;

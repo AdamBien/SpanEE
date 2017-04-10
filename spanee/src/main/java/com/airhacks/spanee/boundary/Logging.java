@@ -1,6 +1,6 @@
 /*
  */
-package com.airhacks.tracee.boundary;
+package com.airhacks.spanee.boundary;
 
 /**
  *

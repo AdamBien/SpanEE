@@ -1,5 +1,5 @@
 
-package com.airhacks.tracee.boundary;
+package com.airhacks.spanee.boundary;
 
 import java.util.Optional;
 import static java.util.UUID.randomUUID;

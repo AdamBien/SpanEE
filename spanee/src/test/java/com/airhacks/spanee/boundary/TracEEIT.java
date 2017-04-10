@@ -1,7 +1,8 @@
 /*
  */
-package com.airhacks.tracee.boundary;
+package com.airhacks.spanee.boundary;
 
+import com.airhacks.spanee.boundary.TracEE;
 import org.junit.Before;
 import org.junit.Test;
 
