@@ -2,7 +2,7 @@
  */
 package com.airhacks.zipkin.boundary;
 
-import com.airhacks.tracee.boundary.TracEEClientRequestFilter;
+import com.airhacks.spanee.boundary.SpanEEClientRequestFilter;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -22,7 +22,7 @@ public class TracesResourceIT {
     public void init() {
 
         this.client = ClientBuilder.newBuilder()
-                .register(new TracEEClientRequestFilter("http://localhost:9411"))
+                .register(new SpanEEClientRequestFilter("http://localhost:9411"))
                 .build();
         this.tut = this.client.target("http://localhost:8080/tracee-jaxrs/resources/traces");
     }
