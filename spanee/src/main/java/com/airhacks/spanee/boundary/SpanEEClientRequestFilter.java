@@ -3,7 +3,7 @@ package com.airhacks.spanee.boundary;
 
 import static com.airhacks.spanee.boundary.Networking.extractIpAddress;
 import static com.airhacks.spanee.boundary.Networking.extractServiceName;
-import static com.airhacks.spanee.boundary.TracEE.TRACEE_HEADER;
+import static com.airhacks.spanee.boundary.SpanEE.TRACEE_HEADER;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
@@ -20,15 +20,15 @@ import javax.ws.rs.ext.Provider;
  * @author airhacks.com
  */
 @Provider
-public class TracEEClientRequestFilter implements ClientRequestFilter, ClientResponseFilter {
+public class SpanEEClientRequestFilter implements ClientRequestFilter, ClientResponseFilter {
 
-    private TracEE tracEE;
-    static final String SPAN_EXISTED = TracEEClientRequestFilter.class.getName() + ".spanexisted";
+    private SpanEE tracEE;
+    static final String SPAN_EXISTED = SpanEEClientRequestFilter.class.getName() + ".spanexisted";
     private final static ConcurrentHashMap<ClientRequestContext, Long> concurrentRequests = new ConcurrentHashMap<>();
 
 
-    public TracEEClientRequestFilter(String host) {
-        this.tracEE = new TracEE(() -> host, true);
+    public SpanEEClientRequestFilter(String host) {
+        this.tracEE = new SpanEE(() -> host, true);
     }
 
 

@@ -2,7 +2,7 @@
  */
 package com.airhacks.spanee.boundary;
 
-import com.airhacks.spanee.boundary.TracEE;
+import com.airhacks.spanee.boundary.SpanEE;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,13 +10,13 @@ import org.junit.Test;
  *
  * @author airhacks.com
  */
-public class TracEEIT {
+public class SpanEEIT {
 
-    TracEE cut;
+    SpanEE cut;
 
     @Before
     public void initClient() {
-        this.cut = new TracEE(() -> "http://localhost:9411/api/v1/spans", true);
+        this.cut = new SpanEE(() -> "http://localhost:9411/api/v1/spans", true);
     }
 
     @Test

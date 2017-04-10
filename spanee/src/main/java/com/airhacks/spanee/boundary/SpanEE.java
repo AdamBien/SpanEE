@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
  *
  * @author airhacks.com
  */
-public class TracEE {
+public class SpanEE {
     final static String TRACEE_HEADER = "span.id";
     final static String API_PATH = "/api/v1/spans";
 
@@ -29,7 +29,7 @@ public class TracEE {
 
     private Logging LOG;
 
-    public TracEE(Supplier<String> uriSupplier, boolean clientMode) {
+    public SpanEE(Supplier<String> uriSupplier, boolean clientMode) {
         String uri = uriSupplier.get();
         this.LOG = System.out::println;
         this.LOG.log("URI: " + uri + " Client mode: " + clientMode);

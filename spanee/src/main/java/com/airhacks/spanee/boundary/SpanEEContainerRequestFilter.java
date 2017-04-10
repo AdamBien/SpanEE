@@ -1,7 +1,7 @@
 
 package com.airhacks.spanee.boundary;
 
-import static com.airhacks.spanee.boundary.TracEE.TRACEE_HEADER;
+import static com.airhacks.spanee.boundary.SpanEE.TRACEE_HEADER;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
@@ -19,13 +19,13 @@ import javax.ws.rs.ext.Provider;
  * @author airhacks.com
  */
 @Provider
-public class TracEEContainerRequestFilter implements ContainerRequestFilter, ContainerResponseFilter {
+public class SpanEEContainerRequestFilter implements ContainerRequestFilter, ContainerResponseFilter {
 
     private final static ConcurrentHashMap<ContainerRequestContext, Long> concurrentRequests = new ConcurrentHashMap<>();
-    private TracEE tracee;
+    private SpanEE tracee;
 
-    public TracEEContainerRequestFilter() {
-        this.tracee = new TracEE(Networking::configureBaseURI, true);
+    public SpanEEContainerRequestFilter() {
+        this.tracee = new SpanEE(Networking::configureBaseURI, true);
     }
 
 
